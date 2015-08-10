@@ -9,14 +9,24 @@
 
             $stop_words = array('from', 'a', 'an', 'the', 'at', 'by', 'for', 'in', 'of', 'on', 'to', 'up', 'and', 'as', 'but', 'or', 'nor');
 
-            foreach ($input_array_of_words as $word) {
-                $word = strtolower($word);
 
-                if (in_array($word, $stop_words))
+            foreach ($input_array_of_words as $word) {
+                $omalley = "O'";
+                $unique_words = strpos($word, $omalley);
+
+                if ($unique_words === true)
                 {
                     array_push($output_titlecased, $word);
                 } else {
-                    array_push($output_titlecased, ucfirst($word));
+
+                    $word = strtolower($word);
+
+                    if (in_array($word, $stop_words))
+                    {
+                        array_push($output_titlecased, $word);
+                    } else {
+                        array_push($output_titlecased, ucfirst($word));
+                    }
                 }
             }
             $output_titlecased[0] = ucfirst($output_titlecased[0]);
@@ -25,3 +35,5 @@
     }
 
 ?>
+
+//Add strpos conditional to check for Irish names
