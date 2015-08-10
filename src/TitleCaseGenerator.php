@@ -11,23 +11,16 @@
 
 
             foreach ($input_array_of_words as $word) {
-                $omalley = "O'";
-                $unique_words = strpos($word, $omalley);
 
-                if ($unique_words === true)
+                $word = strtolower($word);
+
+                if (in_array($word, $stop_words))
                 {
                     array_push($output_titlecased, $word);
                 } else {
-
-                    $word = strtolower($word);
-
-                    if (in_array($word, $stop_words))
-                    {
-                        array_push($output_titlecased, $word);
-                    } else {
-                        array_push($output_titlecased, ucfirst($word));
-                    }
+                    array_push($output_titlecased, ucfirst($word));
                 }
+
             }
             $output_titlecased[0] = ucfirst($output_titlecased[0]);
             return implode(" ", $output_titlecased);
@@ -35,5 +28,3 @@
     }
 
 ?>
-
-//Add strpos conditional to check for Irish names
